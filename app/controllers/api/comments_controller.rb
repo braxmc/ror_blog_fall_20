@@ -7,7 +7,7 @@ class Api::CommentsController < ApplicationController
 
   def create
     comment = @post.comments.new(comment_params)
-    if comment.save
+    if (comment.save)
       render json: comment
     else
       render json: { errors: comment.errors }, status: :unprocessable_entity
@@ -15,8 +15,8 @@ class Api::CommentsController < ApplicationController
   end
 
   def update
-    comment = @post.comment.find(params[:id]
-    if comment.update
+    comment = @post.comment.find(params[:id])
+    if (comment.update)
       render json: comment
     else
       render json: { errors: comment.errors }, status: :unprocessable_entity
@@ -30,7 +30,7 @@ class Api::CommentsController < ApplicationController
 
   private
     def set_post
-     @post = Post.find(params[:post])
+     @post = Post.find(params[:post_id])
     end
 
     def comment_params
